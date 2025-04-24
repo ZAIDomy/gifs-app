@@ -6,14 +6,6 @@ import { Gif } from '../interfaces/gif.interface';
 import { GifMapper } from '../mapper/gif.mapper';
 import { map, tap } from 'rxjs';
 
-/* 
-{
-    'goku': [gif1,gif2,gif3],
-    'saitama': [gif1,gif2,gif3],
-}
-Record<string, Gif[]> 
-*/
-
 @Injectable({providedIn: 'root'})
 export class GifsService {
 
@@ -67,5 +59,9 @@ export class GifsService {
                 const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
                 console.log({search: gifs});
             } ); */
+    }
+
+    getHistoryGfis(query: string):Gif[]{
+        return this.searchHistory()[query] ?? [];
     }
 }
