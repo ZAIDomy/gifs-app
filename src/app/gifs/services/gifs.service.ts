@@ -23,6 +23,16 @@ export class GifsService {
     trendingGifs = signal<Gif[]>([]);
     trendingGifsLoading = signal(true);
 
+    trendingGifGroup = computed<Gif[][]>(()=>{
+      const groups = [];
+
+      for(let i=0; i<this.trendingGifs().length; i +=3){
+        groups.push( this.trendingGifs().slice(i,i+3) );
+      }
+
+      return groups;
+    })
+
     searchHistory = signal<Record<string, Gif[]>>(loadFromLocalStorage());
     searcgHistoryKeys = computed(()=> Object.keys(this.searchHistory()));
 
@@ -40,7 +50,7 @@ export class GifsService {
             {
                 params:{
                     api_key: environment.giphyApiKey,
-                    limit: 20,
+                    limit: 24,
                 },
             }).subscribe( (resp)=>{
                 const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
@@ -54,7 +64,7 @@ export class GifsService {
             {
                 params:{
                     api_key: environment.giphyApiKey,
-                    limit: 20,
+                    limit: 24,
                     q: query,
                 },
             }).pipe(
@@ -67,7 +77,7 @@ export class GifsService {
                         [query.toLowerCase()]: items,
                     }));
                 })
-                
+
             );
 
     }

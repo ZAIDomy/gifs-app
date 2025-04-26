@@ -1,5 +1,26 @@
-
-
-<section class="pt-4 pb-4">
+<!-- <section class="pt-4 pb-4">
     <gifs-list [gifs]="gifService.trendingGifs()"/>
 </section>
+ -->
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+
+  @for (group of gifService.trendingGifGroup(); track $index) {
+
+    <div class="grid gap-4">
+
+      @for (gif of group; track gif.id) {
+
+        <div>
+          <img class="h-full w-full rounded-lg object-cover"
+          [src]="gif.url"
+          [alt]="gif.title">
+        </div>
+
+      }
+
+  </div>
+
+  }
+
+</div>
