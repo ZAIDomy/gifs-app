@@ -23,6 +23,8 @@ export class GifsService {
     trendingGifs = signal<Gif[]>([]);
     trendingGifsLoading = signal(true);
 
+    
+
     trendingGifGroup = computed<Gif[][]>(()=>{
       const groups = [];
 
