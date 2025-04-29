@@ -23,11 +23,11 @@ export default class TrendingPageComponent {
     const clientHeight = scrollDiv.clientHeight;
     const scrollHeight = scrollDiv.scrollHeight;
 
-    /* console.log({scrollTotal: scrollTop +  clientHeight, scrollHeight}); */
-
     const isAtBotom = scrollTop+clientHeight+250>=scrollHeight;
 
-    console.log({isAtBotom});
+    if (isAtBotom) {
+      this.gifService.loadTrendingGifs();
+    }
 
   }
 }
